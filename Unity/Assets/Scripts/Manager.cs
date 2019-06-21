@@ -219,9 +219,13 @@ public class Manager : MonoBehaviour
 
         for (int index = 0; index < length; index++)
             sb.AppendLine(string.Join(delimiter, output[index]));
-        
-        string filePath = Application.dataPath + "/" +name+DateTime.Now.DayOfWeek+ ".csv";
+
+       // string filePath = Application.dataPath + "/" +name+DateTime.Now.DayOfWeek+ ".csv";
+        string filePath = Application.persistentDataPath + "/" +name+DateTime.Now.DayOfWeek+ ".csv";
         Debug.Log(filePath);
+        var s = GameObject.Find("Debug");
+        s.GetComponent<Text>().text = filePath;
+        StartCoroutine(Hide(3, s));
 
         StreamWriter outStream = System.IO.File.CreateText(filePath);
         outStream.WriteLine(sb);
