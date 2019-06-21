@@ -92,18 +92,20 @@ public class Manager : MonoBehaviour
         }
         else
         {
-            ModelData model = new ModelData();
-            model.id = KomputerCode + paraUser.Count;
-            model.nama = nama.field.text;
-            model.email = email.field.text;
-            model.instansi = instansi.field.text;
-            model.noHp = noHp.field.text;
-            code.field.text = code.tamabhanKaliamat += model.id;
+            ModelData _model = new ModelData();
+            _model.id = KomputerCode + paraUser.Count;
+            _model.nama = nama.field.text;
+            _model.email = email.field.text;
+            _model.instansi = instansi.field.text;
+            _model.noHp = noHp.field.text;
+
+            var f = code.tamabhanKaliamat;
+            code.field.text = f += _model.id;
 
             panelMenu.SetActive(false);
             panelCode.SetActive(true);
 
-            paraUser.Add(model);
+            paraUser.Add(_model);
             localSave(paraUser);
             paraUser = loadSaveLocal();
         }
@@ -112,6 +114,14 @@ public class Manager : MonoBehaviour
     {
         panelMenu.SetActive(true);
         panelCode.SetActive(false);
+
+        nama.field.text = "";
+        email.field.text = "";
+        instansi.field.text = "";
+        noHp.field.text = "";
+        code.field.text = "";
+
+
     }
 
     void localSave(List<ModelData> datas)
