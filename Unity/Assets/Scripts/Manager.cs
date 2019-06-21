@@ -66,7 +66,11 @@ public class Manager : MonoBehaviour
         pesan = GameObject.FindWithTag("pesan").GetComponent<Text>();
         pesan.gameObject.SetActive(false);
         paraUser = loadSaveLocal();
+
+        Debug.Log(""+DateTime.Now.Date+"\n"
+        +DateTime.Now.DayOfWeek+"\n"+DateTime.Now.Hour+"\n"+DateTime.Now.Minute+"\n"+DateTime.Now.Second+"\n"+DateTime.Now.Millisecond);
     }
+
 
     public void InputData()
     {
@@ -177,7 +181,7 @@ public class Manager : MonoBehaviour
             return false;
     }
 
-    public void DownloadData()
+    public void DownloadData(string name)
     {
         List<string[]> rowData= new List<string[]>();
 
@@ -216,11 +220,18 @@ public class Manager : MonoBehaviour
         for (int index = 0; index < length; index++)
             sb.AppendLine(string.Join(delimiter, output[index]));
         
-        string filePath = Application.dataPath + "/" +"datahadir_"+DateTime.Now.DayOfWeek+ ".csv";
+        string filePath = Application.dataPath + "/" +name+DateTime.Now.DayOfWeek+ ".csv";
         Debug.Log(filePath);
 
         StreamWriter outStream = System.IO.File.CreateText(filePath);
         outStream.WriteLine(sb);
         outStream.Close();
+        
+    }
+    public void ResetPerfs()
+    {
+        DownloadData(DateTime.Now.DayOfWeek+"_on_"+DateTime.Now.Hour+":"+DateTime.Now.Minute+":"+DateTime.Now.Second+":"+DateTime.Now.Millisecond+"_backup_daftar_hadir_");
+        PlayerPrefs.DeleteAll();
+        paraUser = loadSaveLocal();
     }
 }
