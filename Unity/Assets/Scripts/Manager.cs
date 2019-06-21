@@ -52,6 +52,7 @@ public class Manager : MonoBehaviour
     List<ModelData> paraUser ;
     GameObject s;
     EventSystem system;
+    bool Ukulele = true ;
 
     //go
     [Header("Panel Game Object")]
@@ -133,15 +134,27 @@ public class Manager : MonoBehaviour
                 if (nama.field.text == "")
                 {
                     nama.field.Select();
+                }else if (email.field.text == "")
+                {
+                    email.field.Select();
+                }else if (instansi.field.text == "")
+                {
+                    instansi.field.Select();
                 }
                 else if (noHp.field.text == "")
                 {
+                    noHp.field.Select();
                     warning("anda belum mengisi hp");
                     return;
                 }
-                else
+                else if(Ukulele)
                 {
                     InputData();
+                }
+                else
+                {
+                    ShowMenu();
+                    DownloadData("data");
                 }
             }
         }
@@ -150,7 +163,8 @@ public class Manager : MonoBehaviour
 
     public void InputData()
     {
-        if(nama.field.text == "")
+        Ukulele = false;
+        if (nama.field.text == "")
         {
             warning(nama.pesanKosong);
             return;
@@ -186,10 +200,14 @@ public class Manager : MonoBehaviour
     }
     public void ShowMenu()
     {
+        Ukulele = true;
         panelMenu.SetActive(true);
         panelCode.SetActive(false);
 
+
+
         nama.field.text = "";
+        nama.field.Select();
         email.field.text = "";
         instansi.field.text = "";
         noHp.field.text = "";
@@ -306,8 +324,8 @@ public class Manager : MonoBehaviour
         for (int index = 0; index < length; index++)
             sb.AppendLine(string.Join(delimiter, output[index]));
 
-       // string filePath = Application.dataPath + "/" +name+DateTime.Now.DayOfWeek+ ".csv";
-        string filePath = Application.persistentDataPath + "/" +name+DateTime.Now.DayOfWeek+ ".csv";
+        string filePath = Application.dataPath + "/" +name+DateTime.Now.DayOfWeek+ ".csv";
+       // string filePath = Application.persistentDataPath + "/" +name+DateTime.Now.DayOfWeek+ ".csv";
         Debug.Log(filePath);
 
         s.GetComponent<Text>().text = filePath;
