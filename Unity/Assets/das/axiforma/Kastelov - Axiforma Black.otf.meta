@@ -1,0 +1,32 @@
+fileFormatVersion: 2
+guid: 6a163ed3a7e9f42409b3ceb18adf4cfc
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Axiforma
+  fontNames:
+  - Axiforma
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 531341643140f4539b38cd6bc31257b0, type: 3}
+  - {fileID: 12800000, guid: 2da0d485b37bf4bf19973b52f44aa8c3, type: 3}
+  - {fileID: 12800000, guid: 59f85e17eae3c4d7ebaa8745e3394c28, type: 3}
+  - {fileID: 12800000, guid: 62e98c5879d384f4ea9037947e9db218, type: 3}
+  - {fileID: 12800000, guid: 1541b3a8ab7db4df3add3f4fe82cdabc, type: 3}
+  - {fileID: 12800000, guid: 515fb37a0bab849c3a076dbeb0d709b4, type: 3}
+  - {fileID: 12800000, guid: 436d58fbbc3ed409ab1b0ba466a0adfa, type: 3}
+  - {fileID: 12800000, guid: 4315e60c589a44947898d56ab8c2122e, type: 3}
+  - {fileID: 12800000, guid: 252935adaa3c348abbd2764d27d89c8b, type: 3}
+  - {fileID: 12800000, guid: 35a9212f36e0646ed813cb1520c5ef47, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

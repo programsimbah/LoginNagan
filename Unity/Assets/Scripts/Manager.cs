@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 using System;
+using UnityEngine.EventSystems;
 using System.Text;
 using System.IO;
 
@@ -50,6 +51,7 @@ public class Manager : MonoBehaviour
     Text pesan;
     List<ModelData> paraUser ;
     GameObject s;
+    EventSystem system;
 
     //go
     [Header("Panel Game Object")]
@@ -65,6 +67,8 @@ public class Manager : MonoBehaviour
         panelMenu.SetActive(true);
         panelCode.SetActive(false);
 
+      //  system = EventSystemManager
+
         pesan = GameObject.FindWithTag("pesan").GetComponent<Text>();
         pesan.gameObject.SetActive(false);
         paraUser = loadSaveLocal();
@@ -73,10 +77,80 @@ public class Manager : MonoBehaviour
         +DateTime.Now.DayOfWeek+"\n"+DateTime.Now.Hour+"\n"+DateTime.Now.Minute+"\n"+DateTime.Now.Second+"\n"+DateTime.Now.Millisecond);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Return))
+        {
+            //Selectable next = system.currentSelectedGameObject.GetComponent<InputField>();
+            //if (next != null)
+            //{
+            //    InputField inputField = next.GetComponent<InputField>();
+            //    if(inputField != null)
+            //    {
+            //        inputField.OnPointerClick(new PointerEventData(system));
+            //        system.SetSelectedGameObject(next.gameObject, new BaseEventData(system));
+            //    }
+            //}
+
+            if (nama.field.isFocused)
+            {
+                if (nama.field.text == "")
+                {
+                    warning("anda belum mengisi nama");
+                    return;
+                }
+                else
+                {
+                    email.field.Select();
+                }
+            }
+            else if (email.field.isFocused)
+            {
+                if (!validEmail(email.field.text))
+                {
+                    warning(email.pesanKosong);
+                    return;
+                }
+                else
+                {
+                    instansi.field.Select();
+                }
+            }
+            else if (instansi.field.isFocused)
+            {
+                if (instansi.field.text == "")
+                {
+                    warning("anda belum mengisi instansi");
+                    return;
+                }
+                else
+                {
+                    noHp.field.Select();
+                }
+            }
+            else
+            {
+                if (nama.field.text == "")
+                {
+                    nama.field.Select();
+                }
+                else if (noHp.field.text == "")
+                {
+                    warning("anda belum mengisi hp");
+                    return;
+                }
+                else
+                {
+                    InputData();
+                }
+            }
+        }
+    }
+
 
     public void InputData()
     {
-        if(nama.field.text == null)
+        if(nama.field.text == "")
         {
             warning(nama.pesanKosong);
             return;
