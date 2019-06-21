@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
-using UnityEditor;
+using System;
+using System.Text;
+using System.IO;
 
 
 
@@ -109,7 +111,6 @@ public class Manager : MonoBehaviour
     void localSave(List<ModelData> datas)
     {
         string temp = "";
-        Debug.Log(datas.Count);
         for (var i = 0; i < datas.Count; i++)
         {
 
@@ -136,7 +137,6 @@ public class Manager : MonoBehaviour
         string[] tempArray;
         List<ModelData> modelDatas = new List<ModelData>();
         temp = PlayerPrefs.GetString(keyUserPara);
-        Debug.Log("Mantul" + temp);
         if (temp == null || temp == "") return modelDatas;
         tempArray = temp.Split(Slax2.ToCharArray());
         for (int i = 0; i < tempArray.Length; i++)
@@ -179,6 +179,48 @@ public class Manager : MonoBehaviour
 
     public void DownloadData()
     {
+        List<string[]> rowData= new List<string[]>();
 
+        string[] rowDataTemp = new string[5];
+        rowDataTemp[0] = "ID";
+        rowDataTemp[1] = "Nama";
+        rowDataTemp[2] = "Email";
+        rowDataTemp[3] = "Instansi";
+        rowDataTemp[4] = "NoHp";
+        rowData.Add(rowDataTemp);
+
+        for (int i = 0; i <paraUser.Count; i++)
+        {
+           
+            rowDataTemp = new string[5];
+            rowDataTemp[0] = paraUser[i].id;
+            rowDataTemp[1] = paraUser[i].nama;
+            rowDataTemp[2] = paraUser[i].email;
+            rowDataTemp[3] = paraUser[i].instansi;
+            rowDataTemp[4] = paraUser[i].noHp;
+            rowData.Add(rowDataTemp);
+        }
+
+        string[][] output = new string[rowData.Count][];
+
+        for (int i = 0; i < output.Length; i++)
+        {
+            output[i] = rowData[i];
+        }
+
+        int length = output.GetLength(0);
+        string delimiter = ",";
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int index = 0; index < length; index++)
+            sb.AppendLine(string.Join(delimiter, output[index]));
+        
+        string filePath = Application.dataPath + "/" +"datahadir_"+DateTime.Now.DayOfWeek+ ".csv";
+        Debug.Log(filePath);
+
+        StreamWriter outStream = System.IO.File.CreateText(filePath);
+        outStream.WriteLine(sb);
+        outStream.Close();
     }
 }
