@@ -49,6 +49,7 @@ public class Manager : MonoBehaviour
     //Variane
     Text pesan;
     List<ModelData> paraUser ;
+    GameObject s;
 
     //go
     [Header("Panel Game Object")]
@@ -60,6 +61,7 @@ public class Manager : MonoBehaviour
 
     private void Start()
     {
+        s = GameObject.Find("Debug");
         panelMenu.SetActive(true);
         panelCode.SetActive(false);
 
@@ -223,7 +225,7 @@ public class Manager : MonoBehaviour
        // string filePath = Application.dataPath + "/" +name+DateTime.Now.DayOfWeek+ ".csv";
         string filePath = Application.persistentDataPath + "/" +name+DateTime.Now.DayOfWeek+ ".csv";
         Debug.Log(filePath);
-        var s = GameObject.Find("Debug");
+
         s.GetComponent<Text>().text = filePath;
         StartCoroutine(Hide(3, s));
 
