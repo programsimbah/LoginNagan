@@ -324,8 +324,8 @@ public class Manager : MonoBehaviour
         for (int index = 0; index < length; index++)
             sb.AppendLine(string.Join(delimiter, output[index]));
 
-        string filePath = Application.dataPath + "/" +name+DateTime.Now.DayOfWeek+ ".csv";
-       // string filePath = Application.persistentDataPath + "/" +name+DateTime.Now.DayOfWeek+ ".csv";
+        //string filePath = Application.dataPath + "/" +name+DateTime.Now.DayOfWeek+ ".csv";
+        string filePath = Application.persistentDataPath + "/" +name+DateTime.Now.DayOfWeek+ ".csv";
         Debug.Log(filePath);
 
         s.GetComponent<Text>().text = filePath;

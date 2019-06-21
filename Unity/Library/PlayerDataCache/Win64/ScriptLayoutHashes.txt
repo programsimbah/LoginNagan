@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-/Users/MBP/Desktop/kompib/Unity.exe
+/Users/MBP/Desktop/komputerB/Unity.exe
 SceneListBegin?
 Assets/Scenes/SampleScene.unity
 SceneListEnd?
